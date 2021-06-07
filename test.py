@@ -9,7 +9,7 @@ class ApiUnitTest(unittest.TestCase):
     API_URI = 'http://127.0.0.1:5000'
 
     # Ensure flask api is Listening
-    def test_1_get_all_redirect(self):
+    def test_1_get_all_index_redirect(self):
         tester = app.test_client(self)
         r = tester.get(ApiUnitTest.API_URI, content_type='html/text')
         self.assertEqual(r.status_code, 308)
@@ -45,10 +45,10 @@ class ApiUnitTest(unittest.TestCase):
         self.assertEqual(r.status_code, 200)
 
     # # Ensure Api is listenig at allContacts
-    # def test_2_get_all_contacts(self):
-    #     tester = app.test_client(self)
-    #     r = tester.get(f"{ApiUnitTest.API_URI}/contacts", content_type='html/text')
-    #     self.assertEqual(r.status_code, 200)
+    def test_2_get_create_contacts(self):
+        tester = app.test_client(self)
+        r = tester.get(f"{ApiUnitTest.API_URI}/contacts", data={'name': "bhanu", 'email': 'Pbhanu@gmail.com', 'phone_number': "1234567890"} content_type='html/text')
+        self.assertEqual(r.status_code, 200)
 
 
 if __name__ == '__main__':
