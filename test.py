@@ -47,7 +47,7 @@ class ApiUnitTest(unittest.TestCase):
     # # Ensure Api is listenig at allContacts
     def test_2_get_create_contacts(self):
         tester = app.test_client(self)
-        r = tester.get(f"{ApiUnitTest.API_URI}/contacts", data={'name': "bhanu", 'email': 'Pbhanu@gmail.com', 'phone_number': "1234567890"} content_type='html/text')
+        r = tester.get(f"{ApiUnitTest.API_URI}/contacts", data={'name': "bhanu", 'email': 'Pbhanu@gmail.com', 'phone_number': "1234567890"}, content_type='html/text')
         self.assertEqual(r.status_code, 200)
 
 
