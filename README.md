@@ -12,7 +12,7 @@
     pip install -r requirement.txt
 ```
 
-## run the `run.py` file
+## Run the `run.py` file to Start Api server
 ```
     python run.py
 ```
