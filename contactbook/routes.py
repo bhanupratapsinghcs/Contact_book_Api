@@ -65,13 +65,15 @@ def contacts(page):
 def search(page):
     per_page = 10
     if request.method == 'POST':
-        print(request.form)
-        # print(request.form.to_dict()['search'])
-        search = request.form.to_dict()['search'].strip()
+        print(request.form.get("search"))
+        search =  request.form.get("search") # request.form.to_dict()['search'].strip()
         session['search'] = request.form.get('search')
-        # search = request.form.get('search').strip()
-        if '@' in search:
-            print(search)
+        # if request.form.get("search"):
+        #     search = request.form.get("search")
+        #     print(search)
+        if search == "":
+            return redirect(url_for('contacts'))
+        elif '@' in search:
             contacts = Contact_Book.query.filter(Contact_Book.email.contains(search)).paginate(page, per_page, error_out=False)
             return render_template('pages/SearchResult.html', contacts=contacts)
         else:

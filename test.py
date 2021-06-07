@@ -24,7 +24,7 @@ class ApiUnitTest(unittest.TestCase):
     # Ensure Api is listenig at search
     def test_2_get_contact_from_search(self):
         tester = app.test_client(self)
-        r = tester.post(f"{ApiUnitTest.API_URI}/search", [('search', "Arer")])
+        r = tester.post(f"{ApiUnitTest.API_URI}/search", data={'search': 'Arer'})
         self.assertEqual(r.status_code, 200)
 
     # # Ensure Api is listenig at allContacts
