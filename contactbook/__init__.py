@@ -12,3 +12,4 @@ ma = Marshmallow(app)
 
 from contactbook import fake_data
 from contactbook import routes
+from contactbook import apiroute

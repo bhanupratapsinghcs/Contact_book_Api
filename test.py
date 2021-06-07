@@ -3,6 +3,13 @@ import unittest
 import requests
 
 import os
+# data = {
+#     "email": "baxtermich122ael@martin.info",
+#     "name": "Aere",
+#     "phone_number": "(186)433-8369x569",
+# }
+
+# r = requests.post('http://127.0.0.1:5000/api/create_contact', form=data)
 
 
 class ApiUnitTest(unittest.TestCase):
@@ -53,8 +60,7 @@ class ApiUnitTest(unittest.TestCase):
         tester = app.test_client(self)
         print("6")
         r = tester.get(f"{ApiUnitTest.API_URI}/contacts", data={'name': "bhanu", 'email': 'Pbhanu@gmail.com', 'phone_number': "1234567890"}, content_type='html/text')
-        print(r.headers)
-        self.assertEqual(r.status_code, 200)
+        print(r.headers)        self.assertEqual(r.status_code, 200)
 
 
 if __name__ == '__main__':

@@ -13,10 +13,12 @@ def index():
 # post method
 @app.route("/create_contact", methods=('GET', 'POST'))
 def create_contact():
+    # print(request.form)
     form = FormValidation()
     if form.validate_on_submit():
         contact = Contact_Book()
         form.populate_obj(contact)
+        # print(contact)
         db.session.add(contact)
         try:
             db.session.commit()
@@ -33,6 +35,7 @@ def create_contact():
 @app.route("/edit_contact/<id>", methods=('GET', 'POST'))
 def edit_contact(id):
     contact = Contact_Book.query.filter_by(id=id).first()
+    print(contact)
     form = FormValidation(obj=contact)
     if form.validate_on_submit():
         try:
@@ -43,13 +46,10 @@ def edit_contact(id):
         except:
             db.session.rollback()
             flash('Error update contact.', 'danger')
-    return render_template(
-        'pages/edit_contact.html',
-        form=form)
+    return render_template('pages/edit_contact.html', form=form)
+
 
 # get Method
-
-
 @app.route('/contacts', methods=['GET'], defaults={"page": 1})
 @app.route("/contacts/<int:page>")
 def contacts(page):
