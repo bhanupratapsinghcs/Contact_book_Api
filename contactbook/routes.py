@@ -55,7 +55,7 @@ def edit_contact(id):
 def contacts(page):
     page = page
     per_page = 20
-    contacts = Contact_Book.query.order_by(Contact_Book.name).paginate(page, per_page, error_out=False)
+    contacts = Contact_Book.query.order_by(Contact_Book.id).paginate(page, per_page, error_out=False)
     return render_template('pages/contacts.html', contacts=contacts), 200
 
 
@@ -66,7 +66,7 @@ def search(page):
     per_page = 10
     if request.method == 'POST':
         print(request.form.get("search"))
-        search =  request.form.get("search") # request.form.to_dict()['search'].strip()
+        search = request.form.get("search").strip()  # request.form.to_dict()['search'].strip()
         session['search'] = request.form.get('search')
         # if request.form.get("search"):
         #     search = request.form.get("search")
@@ -88,7 +88,8 @@ def search(page):
 @ app.route("/contacts/delete", methods=('POST',))
 def contacts_delete():
     try:
-        contact = Contact_Book.query.filter_by(id=request.form['id']).first()
+        d_id = request.form.get('id')
+        contact = Contact_Book.query.filter_by(id=d_id).first()
         db.session.delete(contact)
         db.session.commit()
         flash('Delete successfully.', 'danger')
