@@ -65,12 +65,9 @@ def contacts(page):
 def search(page):
     per_page = 10
     if request.method == 'POST':
-        print(request.form.get("search"))
+        # print(request.form.get("search"))
         search = request.form.get("search").strip()  # request.form.to_dict()['search'].strip()
         session['search'] = request.form.get('search')
-        # if request.form.get("search"):
-        #     search = request.form.get("search")
-        #     print(search)
         if search == "":
             return redirect(url_for('contacts'))
         elif '@' in search:
