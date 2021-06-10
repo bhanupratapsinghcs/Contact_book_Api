@@ -25,3 +25,14 @@ After starting the Api server
 ```
     python test.py
 ```
+
+## Api Route With json Response
+
+
+| Endpoint | Description |
+| --- | --- |
+| GET /api/contacts | Retrieves All Contacts |
+| GET /api/search/<search> | Search Specific contact with Name and Email |
+| POST /api/create_contact | Add Contact |
+| POST /api/edit_contact/<id> | Edit Contact |
+| POST /api/contacts/delete | Delete Contact |
